@@ -69,7 +69,6 @@
         });
     });
 
-    // Hide the signup and reset password forms initially
     signupForm.style.display = "none";
     resetPassword.style.display = "none";
 
@@ -90,8 +89,6 @@
         }
     });
 
-
-    // Handle signup button click
     signupButton.addEventListener("click", async () => {
         const firstNameInput = document.querySelector(".signup-form input[type='text'][placeholder='First Name']");
         const lastNameInput = document.querySelector(".signup-form input[type='text'][placeholder='Last Name']");
@@ -103,7 +100,6 @@
         const email = emailInput.value;
         const password = passwordInput.value;
 
-        // Clear input values
         firstNameInput.value = "";
         lastNameInput.value = "";
         emailInput.value = "";
@@ -124,7 +120,6 @@
         window.alert("Please check your email for verification.")
     });
 
-    // Handle login button click
     loginButton.addEventListener("click", async () => {
         const emailInput = document.querySelector(".login-form input[type='text'][placeholder='Email']");
         const passwordInput = document.querySelector(".login-form input[type='password'][placeholder='Password']");
@@ -132,7 +127,6 @@
         const email = emailInput.value;
         const password = passwordInput.value;
 
-        // Clear input values
         emailInput.value = "";
         passwordInput.value = "";
 
@@ -142,13 +136,9 @@
             const loginResponse = await fetch(loginUrl);
             if (loginResponse.ok) {
                 const token = await loginResponse.json();
-                // Cache the token in the browser's local storage
                 localStorage.setItem("token", token);
                 localStorage.setItem("email", email);
                 window.location.href = "home.html";
-
-                // Redirect to log_classes.html
-
             } else {
                 window.alert("Login failed. Please check your email and password.");
             }
@@ -162,7 +152,6 @@
             const email = prompt("Enter your email address:");
             if (email) {
                 const resetUrl = `${url_base}/reset-password_email/${email}`;
-                // You can modify this to open the reset URL in a new window or tab
                 window.open(resetUrl, "_blank");
             }
         });
