@@ -8,8 +8,8 @@ import verify_email_server
 
 app = FastAPI()
 origins = [
-    "http://localhost:63342",  # Update with your actual frontend URL
-    "http://127.0.0.1:8000"  # Update with your FastAPI server URL
+    "http://localhost:63342",
+    "http://127.0.0.1:8000"
 ]
 
 app.add_middleware(
@@ -123,9 +123,8 @@ class Classes(BaseModel):
     class_list: list
 
 
-# https://docs.google.com/document/d/1gYqJdNZp55tprsbdqLgaPTkau5-nfGVBAkQk1t2gMO4/edit
 @app.post("/log-classes/{email}/{token}")
-async def log_classes(email: str, token: str, classes: Classes):  # find out how to get list
+async def log_classes(email: str, token: str, classes: Classes):
     class_list = classes.dict()['class_list']
     if db_controller.check_token(email=email, token=token):
         db_controller.add_user_courses(email=email, classes=class_list)
@@ -268,7 +267,6 @@ async def perform_reset(
     if new_password != confirm_password:
         raise HTTPException(status_code=400, detail="Passwords do not match")
 
-    # Perform password reset logic here, e.g., update the user's password in the database
     db_controller.update_user_password(email=email, new_password=new_password)
 
     html_content = """
@@ -446,8 +444,7 @@ def dump_courses():
         ("CTE", "Adv Publications", "?", ""),
         ("CTE", "Principles of Computer Science", "?", "")
 ]
-
-    # Insert example course data
+    
     for course in courses_data:
         db_controller.insert_course(*course)
 
