@@ -236,7 +236,7 @@ def login(email, password):
 
     if user[1] == password:
         current_time = time.time()
-        access_token = secrets.token_hex(16)  # Adjust the token length as needed
+        access_token = secrets.token_hex(16)
         cursor.execute('UPDATE students SET access_token = ?, token_created_at = ? WHERE id = ?',
                        (access_token, current_time, user[0]))
         conn.commit()
@@ -262,7 +262,7 @@ def check_token(email, token):
     current_time = time.time()
     token_age = current_time - token_created_at
 
-    if access_token == token and token_age <= 604800:  # 604800 seconds = 1 week
+    if access_token == token and token_age <= 604800:
         conn.close()
         return True
     else:
