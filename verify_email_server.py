@@ -3,9 +3,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 smtp_server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-password = "" # use you email password (would recommend and app password if using google)
-sender = "" # use your email address that will be sending the email
-server_adress = "http://127.0.0.1:8000" # change this to the server address
+password = ""
+sender = ""
+server_adress = "http://127.0.0.1:8000"
 
 
 def send_verifacation_email(email, code):
